@@ -19,12 +19,12 @@ var io = require('socket.io')(server);
 
 io.on('connection', socket => {
     console.log('client(%s) connected', socket.id);
-    socket.send('hello, '+socket.id);
+    socket.send('hello, ' + socket.id);
     socket.on("message", (data) => {
         console.log("client(%s) says: %s", socket.id, data);
-        io.emit("notify", {client: socket.id, data: data});
+        io.emit("notify", { client: socket.id, data: data });
     });
 });
 
 
-server.listen(3000, '10.161.93.66');
+server.listen(3000, '127.0.0.1');

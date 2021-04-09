@@ -37,14 +37,18 @@
         });
 
         socket.on("message", (data) => {
-            console.log("i am " + data);
-            // document.getElementById('hello').value = data;
+            console.log("server says: " + data);
+            document.getElementById('hello').innerHTML = data;
         });
 
         socket.on("notify", data => {
             console.log(data.client + " says: " + data.data);
             var node = document.createElement("LI");                 // Create a <li> node
-            var textnode = document.createTextNode(data.client+": "+data.data);         // Create a text node
+            var boldnode = document.createElement("B");                 // Create a <li> node
+            var namenode = document.createTextNode(data.client);         // Create a text node
+            var textnode = document.createTextNode(":\t"+data.data);         // Create a text node
+            boldnode.appendChild(namenode);
+            node.appendChild(boldnode);                              // Append the text to <li>
             node.appendChild(textnode);                              // Append the text to <li>
             document.getElementById("chat").appendChild(node);
         });
